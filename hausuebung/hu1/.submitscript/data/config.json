@@ -4,7 +4,7 @@
     "hostname": "https://vmar01.mni.thm.de",
     "port": 8443
   },
-  "max_team_size": 3,
+  "max_team_size": 1,
   "assignment_ids": [
     "shell-basic",
     "shell-advanced"
