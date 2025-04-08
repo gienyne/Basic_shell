@@ -1,9 +1,7 @@
 from enum import Enum
+from io import BufferedRandom
 from pathlib import Path
 from typing import Union, Dict, List, Optional
-
-from typing.io import IO
-
 from submitscript import data
 from submitscript.api.api import SubmissionRoutes
 from submitscript.api.types import ApiSerializableSubmissionResponse, ApiSerializableSubmission
@@ -68,7 +66,7 @@ class Submission:
         import shutil
         shutil.rmtree(self.path)
 
-    def set_upload_file(self, file: IO[bytes]) -> None:
+    def set_upload_file(self, file: BufferedRandom) -> None:
         file.seek(0)
 
         import shutil
@@ -84,7 +82,7 @@ class Submission:
 
     def update_name(self, new_id: Optional[str] = None):
         import re
-        matched = re.search("(\[(.*)])?\s*(.+)", self.path.name)
+        matched = re.search("(\\[(.*)])?\\s*(.+)", self.path.name)
         tag = matched.group(2)
         old_id = matched.group(3)
 
@@ -165,8 +163,8 @@ class Submission:
                 else 0
 
         interface_print("You achieved the score %d/%d (%d%%)." % (self.submission_data.get().evaluation_result.score,
-                                                        self.submission_data.get().evaluation_result.max_score,
-                                                        score_percentage))
+                                                                  self.submission_data.get().evaluation_result.max_score,
+                                                                  score_percentage))
 
         if self.submission_data.get().evaluation_result.comment is not None:
             interface_print("The following comment was left by your teacher:")

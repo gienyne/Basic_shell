@@ -15,7 +15,10 @@
       else
         # If greadlink is not available we can hack our way there with this.
         # https://stackoverflow.com/a/5756763
-        ABSPATH="$(cd "$(dirname "$*")"; pwd -P)/$(basename "$*")"
+        ABSPATH="$(
+          cd "$(dirname "$*")"
+          pwd -P
+        )/$(basename "$*")"
         echo "$ABSPATH"
       fi
     else readlink -f "$*"; fi
@@ -99,6 +102,9 @@
         return 1
       }
 
+      check_python3_interpreter_version "$(which python3.13)" && return 0
+      check_python3_interpreter_version "$(which python3.12)" && return 0
+      check_python3_interpreter_version "$(which python3.11)" && return 0
       check_python3_interpreter_version "$(which python3.10)" && return 0
       check_python3_interpreter_version "$(which python3.9)" && return 0
       check_python3_interpreter_version "$(which python3.8)" && return 0

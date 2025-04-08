@@ -1,12 +1,11 @@
 import os
-from typing.io import TextIO
-
+from io import BufferedRandom
 from submitscript.util.logfile import LogFile
 
 global_log_file = LogFile(open(os.devnull, "w"), flush_after_log=True)
 
 
-def set_global_log_file(file: TextIO):
+def set_global_log_file(file: BufferedRandom):
     global_log_file.file = file
 
 
