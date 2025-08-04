@@ -10,7 +10,7 @@
 #define LIST_H
 
 typedef struct list {
-    void *head;
+    void *head; //Enthält einen Zeiger auf ein Element (eines beliebigen Typs)
     struct list *tail;
 } List;
 
