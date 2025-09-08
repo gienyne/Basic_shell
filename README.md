@@ -1,20 +1,16 @@
-# 🐚 MiniShell – Hausübung 1 (Betriebssysteme)
+# 🐚 MiniShell – Implementierung einer vereinfachten Shell
 
-Dieses Projekt ist im Rahmen der **Hausübung 1** des Kurses *Betriebssysteme* an der Fachhochschule entstanden.  
-Ziel war es, eine vereinfachte Shell zu implementieren, die grundlegende Funktionen wie **Befehlsausführung**, **Pipes**, **Redirections**, **Hintergrundprozesse** und **Signalbehandlung** unterstützt.
-
-> ⚠️ **Hinweis:** Das ursprüngliche C-Skelett wurde von den Dozierenden zur Verfügung gestellt.  
-> Die hier dokumentierten Erweiterungen und Implementierungen wurden selbstständig vorgenommen.
+Dieses Projekt beinhaltet die Entwicklung einer **MiniShell** in C, die grundlegende Funktionen moderner Kommandozeilenumgebungen unterstützt.  
+Die Shell implementiert Befehlsausführung, Pipes, Umleitungen, Hintergrundprozesse sowie Signalbehandlung.
 
 ---
 
-## ✅ Unterstützte Features (Checkliste)
+## ✅ Unterstützte Features
 
 ### 🔸 1. `cd`-Befehl
-- [x] `cd` in existierendes Verzeichnis  
-- [x] `cd` in nicht existierendes Verzeichnis → Fehlermeldung  
-- [x] `cd` in Verzeichnis mit fehlenden Rechten  
-- [x] `cd` ohne Argumente (Wechsel ins Home-Verzeichnis)
+- Wechsel in bestehende Verzeichnisse  
+- Fehlerbehandlung bei nicht vorhandenen Verzeichnissen oder fehlenden Rechten  
+- Standardverhalten (`cd` ohne Argument → Wechsel ins Home-Verzeichnis)
 
 **Beispiel:**
 ```bash
@@ -25,18 +21,15 @@ $ cd xx
 xx: No such file or directory
 $ cd
 $ pwd
-/home/student
-🔸 2. Verknüpfung von Befehlen
-UND-Verknüpfung (&&)
+/home/user
 
-ODER-Verknüpfung (||)
+🔸 2. Verknüpfung von Befehlen
+Unterstützung von UND-Verknüpfung (&&) und ODER-Verknüpfung (||).
 
 Beispiel:
 
 $ true && echo yay
 yay
-$ false && echo nope
-$ true || echo nope
 $ false || echo yay
 yay
 🔸 3. Umleitungen (Redirections)
@@ -44,7 +37,7 @@ stdout-Umleitung (>, >>)
 
 stdin-Umleitung (<)
 
-Fehlerbehandlung bei fehlenden Dateien oder Rechten
+Fehlerbehandlung bei nicht vorhandenen Dateien oder fehlenden Berechtigungen
 
 Beispiel:
 
@@ -55,70 +48,57 @@ $ echo hallo >> f
 $ cat f
 hallo
 hallo
-$ cat < f >> f1
-$ cat f1
-hallo
-hallo
 $ cat < xyz
 xyz: No such file or directory
-$ touch outfile
-$ chmod 000 outfile
-$ ls >> outfile
-outfile: Permission denied
 
 🔸 4. Pipelines
-Standardpipelines (z. B. cat | cat | cat)
+Standard-Pipelines (z. B. cat | cat | cat)
 
-Warten auf alle Teilnehmer der Pipeline
+Korrektes Warten auf alle Prozesse in der Pipeline
 
-Keine Verklemmung bei vollen Pipes
+Keine Verklemmungen bei vollen Pipes
 
-Abbruch von >10 Prozessen mit CTRL+C korrekt behandelt
+Sichere Beendigung von Prozessen bei CTRL+C
 
 Beispiel:
 
-$ cat | cat | cat
 $ ls -l | wc
 $ cat /bin/bash | od -x | head -1
 $ cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat
 ^C
 $ status
-
 🔸 5. Statusanzeige (status)
-Rückgabewerte korrekt anzeigen
+Anzeige von Rückgabewerten
 
-Signale korrekt erkennen
+Erkennung von Signalen
 
-Beendete Hintergrundprozesse entfernen
+Verwaltung und Entfernen beendeter Hintergrundprozesse
 
 Beispiel:
 
 $ ls -l xyz &
-$ xterm &
-$ ps &
 $ status
 $ kill -9 <pid>
 $ status
 
-🛠️ Struktur des Codes
-Die Implementierung umfasst unter anderem folgende Dateien:
+🛠️ Architektur & Code-Struktur
+Die Implementierung ist modular aufgebaut und umfasst u. a.:
 
-command.c / command.h – Verwaltung von einfachen und zusammengesetzten Befehlen
+command.c / command.h – Verwaltung von Befehlen (einfach & zusammengesetzt)
 
-parser.c – Parsen der Eingabe
+parser.c – Kommandozeilen-Parser
 
-executor.c – Ausführung inkl. Redirection, Pipes und Hintergrundprozesse
+executor.c – Ausführung inkl. Redirections, Pipes und Hintergrundprozesse
 
-list.c / list.h – Eigene verkettete Listenstruktur
+list.c / list.h – Eigene Listenstruktur zur Prozessverwaltung
 
-debug.c – Optionales Debugging / Command-Ausgabe
+debug.c – Optionale Debug-Ausgaben
 
-📄 Aufgabenstellung
-Die vollständige Aufgabenbeschreibung befindet sich in der Datei Hausübung1.pdf.
+⚙️ Build & Ausführung
+Kompilieren und Starten über die bereitgestellte Makefile bzw. die Anleitung in README.txt.
 
-⚙️ Kompilieren & Starten
-Um das Projekt zu kompilieren und auszuführen: siehe datei: README.txt
-
+make
+./minishell
 
 🧑‍💻 Autor : DIMITRY NTOFEU NYATCHA
 Fachhochschule: [THM]
