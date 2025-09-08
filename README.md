@@ -8,6 +8,7 @@ Die Shell implementiert Befehlsausführung, Pipes, Umleitungen, Hintergrundproze
 ## ✅ Unterstützte Features
 
 ### 🔸 1. `cd`-Befehl
+
 - Wechsel in bestehende Verzeichnisse  
 - Fehlerbehandlung bei nicht vorhandenen Verzeichnissen oder fehlenden Rechten  
 - Standardverhalten (`cd` ohne Argument → Wechsel ins Home-Verzeichnis)
@@ -32,7 +33,9 @@ $ true && echo yay
 yay
 $ false || echo yay
 yay
+
 🔸 3. Umleitungen (Redirections)
+
 stdout-Umleitung (>, >>)
 
 stdin-Umleitung (<)
@@ -52,6 +55,7 @@ $ cat < xyz
 xyz: No such file or directory
 
 🔸 4. Pipelines
+
 Standard-Pipelines (z. B. cat | cat | cat)
 
 Korrektes Warten auf alle Prozesse in der Pipeline
@@ -67,7 +71,9 @@ $ cat /bin/bash | od -x | head -1
 $ cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat
 ^C
 $ status
+
 🔸 5. Statusanzeige (status)
+
 Anzeige von Rückgabewerten
 
 Erkennung von Signalen
@@ -82,6 +88,7 @@ $ kill -9 <pid>
 $ status
 
 🛠️ Architektur & Code-Struktur
+
 Die Implementierung ist modular aufgebaut und umfasst u. a.:
 
 command.c / command.h – Verwaltung von Befehlen (einfach & zusammengesetzt)
@@ -95,6 +102,7 @@ list.c / list.h – Eigene Listenstruktur zur Prozessverwaltung
 debug.c – Optionale Debug-Ausgaben
 
 ⚙️ Build & Ausführung
+
 Kompilieren und Starten über die bereitgestellte Makefile bzw. die Anleitung in README.txt.
 
 make
@@ -102,10 +110,10 @@ make
 
 🧑‍💻 Autor : DIMITRY NTOFEU NYATCHA
 Fachhochschule: [THM]
-Kurs: Betriebssysteme – Hausübung 1
+Kurs: Betriebssysteme
 Sprache: C
 
 🔒 Lizenz / Verwendung
 Privates Uni-Projekt – kein öffentlicher Wiedergebrauch ohne Rücksprache.
-Nur zu Demonstrations- und Lernzwecken gedacht.
+
 
