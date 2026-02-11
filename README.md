@@ -1,13 +1,13 @@
-# 🐚 MiniShell – Implementierung einer vereinfachten Shell
+# MiniShell – Implementierung einer vereinfachten Shell
 
 Dieses Projekt beinhaltet die Entwicklung einer **MiniShell** in C, die grundlegende Funktionen moderner Kommandozeilenumgebungen unterstützt.  
 Die Shell implementiert Befehlsausführung, Pipes, Umleitungen, Hintergrundprozesse sowie Signalbehandlung.
 
 ---
 
-## ✅ Unterstützte Features
+## Unterstützte Features
 
-### 🔸 1. `cd`-Befehl
+### 1. `cd`-Befehl
 
 - Wechsel in bestehende Verzeichnisse  
 - Fehlerbehandlung bei nicht vorhandenen Verzeichnissen oder fehlenden Rechten  
@@ -24,7 +24,7 @@ $ cd
 $ pwd
 /home/user
 
-🔸 2. Verknüpfung von Befehlen
+2. Verknüpfung von Befehlen
 Unterstützung von UND-Verknüpfung (&&) und ODER-Verknüpfung (||).
 
 Beispiel:
@@ -34,7 +34,7 @@ yay
 $ false || echo yay
 yay
 
-🔸 3. Umleitungen (Redirections)
+3. Umleitungen (Redirections)
 
 stdout-Umleitung (>, >>)
 
@@ -54,7 +54,7 @@ hallo
 $ cat < xyz
 xyz: No such file or directory
 
-🔸 4. Pipelines
+4. Pipelines
 
 Standard-Pipelines (z. B. cat | cat | cat)
 
@@ -72,7 +72,7 @@ $ cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat
 ^C
 $ status
 
-🔸 5. Statusanzeige (status)
+5. Statusanzeige (status)
 
 Anzeige von Rückgabewerten
 
