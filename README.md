@@ -87,7 +87,7 @@ $ status
 $ kill -9 <pid>
 $ status
 
-🛠️ Architektur & Code-Struktur
+Architektur & Code-Struktur
 
 Die Implementierung ist modular aufgebaut und umfasst u. a.:
 
@@ -101,19 +101,19 @@ list.c / list.h – Eigene Listenstruktur zur Prozessverwaltung
 
 debug.c – Optionale Debug-Ausgaben
 
-⚙️ Build & Ausführung
+Build & Ausführung
 
 Kompilieren und Starten über die bereitgestellte Makefile bzw. die Anleitung in README.txt.
 
 make
 ./minishell
 
-🧑‍💻 Autor : DIMITRY NTOFEU NYATCHA
+Autor : DIMITRY NTOFEU NYATCHA
 Fachhochschule: [THM]
 Kurs: Betriebssysteme
 Sprache: C
 
-🔒 Lizenz / Verwendung
-Privates Uni-Projekt – kein öffentlicher Wiedergebrauch ohne Rücksprache.
+Lizenz / Verwendung
+kein öffentlicher Wiedergebrauch ohne Rücksprache.
 
 
