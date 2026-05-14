@@ -1,4 +1,11 @@
-````md id="7w2kfd"
+![C](https://img.shields.io/badge/C-Language-A8B9CC?logo=c&logoColor=black) 
+![Linux](https://img.shields.io/badge/Linux-POSIX-FCC624?logo=linux&logoColor=black) 
+![Shell](https://img.shields.io/badge/Shell-Unix_Programming-4EAA25) 
+![Pipes](https://img.shields.io/badge/Pipes-%7C%20Processes-blue) 
+![Signals](https://img.shields.io/badge/Signals-Process_Handling-red)
+![Makefile](https://img.shields.io/badge/Build-Makefile-brightgreen) 
+![Status](https://img.shields.io/badge/Status-Functional-success) 
+
 # MiniShell – Implementation of a Simplified Shell
 
 This project involves the development of a **MiniShell** in C that supports essential features of modern command-line environments.  
