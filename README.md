@@ -1,19 +1,20 @@
-# MiniShell – Implementierung einer vereinfachten Shell
+````md id="7w2kfd"
+# MiniShell – Implementation of a Simplified Shell
 
-Dieses Projekt beinhaltet die Entwicklung einer **MiniShell** in C, die grundlegende Funktionen moderner Kommandozeilenumgebungen unterstützt.  
-Die Shell implementiert Befehlsausführung, Pipes, Umleitungen, Hintergrundprozesse sowie Signalbehandlung.
+This project involves the development of a **MiniShell** in C that supports essential features of modern command-line environments.  
+The shell implements command execution, pipes, redirections, background processes, and signal handling.
 
 ---
 
-## Unterstützte Features
+## Supported Features
 
-### 1. `cd`-Befehl
+### 1. `cd` Command
 
-- Wechsel in bestehende Verzeichnisse  
-- Fehlerbehandlung bei nicht vorhandenen Verzeichnissen oder fehlenden Rechten  
-- Standardverhalten (`cd` ohne Argument → Wechsel ins Home-Verzeichnis)
+- Switching to existing directories  
+- Error handling for non-existing directories or missing permissions  
+- Default behavior (`cd` without arguments -> switch to the home directory)
 
-**Beispiel:**
+**Example:**
 ```bash
 $ cd /tmp
 $ pwd
@@ -23,94 +24,105 @@ xx: No such file or directory
 $ cd
 $ pwd
 /home/user
+````
 
-2. Verknüpfung von Befehlen
-Unterstützung von UND-Verknüpfung (&&) und ODER-Verknüpfung (||).
+---
 
-Beispiel:
+### 2. Command Chaining
 
+Support for logical AND (`&&`) and logical OR (`||`) operators.
+
+**Example:**
+
+```bash
 $ true && echo yay
 yay
 $ false || echo yay
 yay
+```
 
-3. Umleitungen (Redirections)
+---
 
-stdout-Umleitung (>, >>)
+### 3. Redirections
 
-stdin-Umleitung (<)
+* stdout redirection (`>`, `>>`)
+* stdin redirection (`<`)
+* Error handling for missing files or insufficient permissions
 
-Fehlerbehandlung bei nicht vorhandenen Dateien oder fehlenden Berechtigungen
+**Example:**
 
-Beispiel:
-
-$ echo hallo > f
+```bash
+$ echo hello > f
 $ cat f
-hallo
-$ echo hallo >> f
+hello
+$ echo hello >> f
 $ cat f
-hallo
-hallo
+hello
+hello
 $ cat < xyz
 xyz: No such file or directory
+```
 
-4. Pipelines
+---
 
-Standard-Pipelines (z. B. cat | cat | cat)
+### 4. Pipelines
 
-Korrektes Warten auf alle Prozesse in der Pipeline
+* Standard pipelines (e.g. `cat | cat | cat`)
+* Proper waiting for all processes within a pipeline
+* No deadlocks with full pipes
+* Safe process termination using `CTRL+C`
 
-Keine Verklemmungen bei vollen Pipes
+**Example:**
 
-Sichere Beendigung von Prozessen bei CTRL+C
-
-Beispiel:
-
+```bash
 $ ls -l | wc
 $ cat /bin/bash | od -x | head -1
 $ cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat
 ^C
 $ status
+```
 
-5. Statusanzeige (status)
+---
 
-Anzeige von Rückgabewerten
+### 5. Status Command (`status`)
 
-Erkennung von Signalen
+* Display of return values
+* Signal detection
+* Management and cleanup of terminated background processes
 
-Verwaltung und Entfernen beendeter Hintergrundprozesse
+**Example:**
 
-Beispiel:
-
+```bash
 $ ls -l xyz &
 $ status
 $ kill -9 <pid>
 $ status
+```
 
-Architektur & Code-Struktur
+---
 
-Die Implementierung ist modular aufgebaut und umfasst u. a.:
+## Architecture & Code Structure
 
-command.c / command.h – Verwaltung von Befehlen (einfach & zusammengesetzt)
+The implementation follows a modular architecture and includes:
 
-parser.c – Kommandozeilen-Parser
+* `command.c / command.h` – Command management (simple & compound)
+* `parser.c` – Command-line parser
+* `executor.c` – Execution including redirections, pipes, and background processes
+* `list.c / list.h` – Custom list structure for process management
+* `debug.c` – Optional debug output
 
-executor.c – Ausführung inkl. Redirections, Pipes und Hintergrundprozesse
+---
 
-list.c / list.h – Eigene Listenstruktur zur Prozessverwaltung
+## Build & Execution
 
-debug.c – Optionale Debug-Ausgaben
+Compile and run using the provided Makefile or the instructions in `README.txt`.
 
-Build & Ausführung
-
-Kompilieren und Starten über die bereitgestellte Makefile bzw. die Anleitung in README.txt.
-
+```bash
 make
 ./minishell
-
+```
 Autor : DIMITRY NTOFEU NYATCHA
 Fachhochschule: [THM]
-Kurs: Betriebssysteme
 Sprache: C
 
 Lizenz / Verwendung
